@@ -1,4 +1,4 @@
-const img = (file) => `${process.env.PUBLIC_URL}/img/${file}`
+const img = (file) => `/img/${file}`
 
 export default [
     {

@@ -1,54 +1,140 @@
+// Importación de React
 import React from 'react';
-import ProductList from './ProductList';
+// Importación de componentes propios
 import CartTotal from './CartTotal';
-import { formatCLP } from '../utils/format.js'
+// Importación de función utilitaria para formatear precios
+import { formatCLP } from '../utils/format.js';
 
-// Componente principal que muestra el carrito y el catálogo de productos
-export default function ShoppingCart({ products, cartItems, addToCart, removeFromCart }) {
+/**
+ * Componente del carrito de compras
+ * Muestra los productos agregados al carrito con opción de eliminarlos
+ * Incluye el total de la compra
+ * 
+ * @param {Object} props - Propiedades del componente
+ * @param {Array<Object>} props.cartItems - Array de productos en el carrito
+ * @param {Function} props.removeFromCart - Función callback para eliminar un producto del carrito
+ * @returns {JSX.Element} Card con la lista de productos en el carrito y el total
+ */
+export default function ShoppingCart({ cartItems, removeFromCart }) {
+  // ========== RENDERIZADO CONDICIONAL PARA CARRITO VACÍO ==========
+  
+  /**
+   * Si no hay items en el carrito, muestra un mensaje indicándolo
+   * return temprano: detiene la ejecución y no renderiza el resto del componente
+   */
+  if (cartItems.length === 0) {
+    return (
+      <div className="card">
+        <div className="card-body text-center">
+          <h5 className="card-title">Tu carrito está vacío</h5>
+          <p className="card-text text-muted">Agrega productos desde el catálogo para comenzar.</p>
+        </div>
+      </div>
+    );
+  }
+
+  // ========== RENDERIZADO DEL CARRITO CON PRODUCTOS ==========
   return (
-    <div>
-      <section style={{ marginTop: '2rem' }}>
-        {/* Título del carrito */}
-        <h2 style={{ 
-          fontSize: '1.8rem', 
-          color: '#333',
-          marginBottom: '1rem',
-          borderBottom: '2px solid #3498db',
-          paddingBottom: '0.5rem'
-        }}>
-          Carrito
-        </h2>
-        {/* Renderizado condicional: mensaje si el carrito está vacío */}
-        {cartItems.length === 0 ? (
-          <p style={{ color: '#555' }}>Tu carrito está vacío. Agrega productos desde el listado.</p>
-        ) : (
-          <div>
-            {/* Lista de productos en el carrito */}
-            <ul style={{ listStyle: 'none', padding: 0, display: 'grid', gap: 8 }}>
-              {cartItems.map((item) => (
-                <li key={item.id} style={{ display: 'flex', alignItems: 'center', gap: 12, border: '1px solid #eee', borderRadius: 12, padding: 8 }}>
-                  {/* Imagen y datos del producto en el carrito */}
-                  <img src={item.image} alt={item.name} style={{ width: 56, height: 56, objectFit: 'cover', borderRadius: 8 }} />
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontWeight: 600, fontSize: 14 }}>{item.name}</div>
-                    <div style={{ fontSize: 13, color: '#555' }}>{formatCLP(item.offerPrice || item.price)}</div>
+    <div className="card">
+      {/* Encabezado de la card del carrito */}
+      <div className="card-header">
+        <h5 className="mb-0">🛒 Productos en tu carrito</h5>
+      </div>
+      
+      <div className="card-body">
+        {/* 
+          Contenedor de lista de productos
+          - d-flex flex-column: layout flexbox vertical
+          - gap-2: espacio de 2 unidades entre elementos
+        */}
+        <div className="d-flex flex-column gap-2">
+          {/* 
+            Mapea el array de cartItems para crear una tarjeta por cada producto
+            map: itera y retorna un elemento JSX por cada item
+          */}
+          {cartItems.map((item) => (
+            // Mini-card para cada producto en el carrito
+            // key: usa cartId único (no el id del producto) para diferenciar items duplicados
+            <div key={item.cartId} className="card">
+              {/* p-2: padding reducido para vista compacta */}
+              <div className="card-body p-2">
+                {/* 
+                  Grid de Bootstrap para organizar imagen y detalles
+                  - align-items-center: alinea verticalmente al centro
+                */}
+                <div className="row align-items-center">
+                  {/* Columna de la imagen (25% del ancho) */}
+                  <div className="col-3">
+                    <img 
+                      src={item.image} 
+                      // img-fluid: imagen responsiva, rounded: bordes redondeados
+                      className="img-fluid rounded" 
+                      alt={item.name}
+                      // Estilos inline para tamaño y presentación
+                      style={{ height: '50px', objectFit: 'contain', backgroundColor: '#f8f9fa' }}
+                    />
                   </div>
-                  {/* Botón para quitar producto del carrito */}
-                  <button onClick={() => removeFromCart(item.id)} style={{ padding: '0.4rem 0.6rem', borderRadius: 8, border: '1px solid #c00', background: 'white', color: '#c00', cursor: 'pointer' }}>
-                    Quitar
-                  </button>
-                </li>
-              ))}
-            </ul>
-            {/* Total del carrito */}
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 12, marginTop: 12 }}>
-              <span>Total:</span> <CartTotal items={cartItems} />
+                  
+                  {/* Columna de detalles del producto (75% del ancho) */}
+                  <div className="col-9">
+                    {/* Nombre del producto - small: texto más pequeño */}
+                    <h6 className="card-title mb-1 text-start small">{item.name}</h6>
+                    
+                    {/* Categoría del producto */}
+                    <p className="card-text text-muted small mb-1">{item.category}</p>
+                    
+                    {/* Sección de precios con renderizado condicional */}
+                    <div className="price-section mb-2">
+                      {/* Verifica si hay precio de oferta Y si es menor al precio regular */}
+                      {item.offerPrice && item.offerPrice < item.price ? (
+                        // Si hay oferta, muestra ambos precios
+                        <div>
+                          {/* Precio original tachado */}
+                          <span className="text-decoration-line-through text-muted me-1 small">
+                            {formatCLP(item.price)}
+                          </span>
+                          <br />
+                          {/* Precio de oferta en rojo */}
+                          <span className="fw-bold text-danger small">
+                            {formatCLP(item.offerPrice)}
+                          </span>
+                        </div>
+                      ) : (
+                        // Si no hay oferta, solo muestra el precio regular
+                        <span className="fw-bold text-primary small">
+                          {formatCLP(item.price)}
+                        </span>
+                      )}
+                    </div>
+                    
+                    {/* 
+                      Botón para eliminar el producto del carrito
+                      - btn-outline-danger: botón con borde rojo
+                      - btn-sm: tamaño pequeño
+                      - w-100: ancho del 100%
+                      onClick: llama a removeFromCart pasando el cartId único
+                    */}
+                    <button 
+                      className="btn btn-outline-danger btn-sm w-100"
+                      onClick={() => removeFromCart(item.cartId)}
+                    >
+                      Eliminar
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        )}
-      </section>
-      {/* Catálogo de productos */}
-      <ProductList products={products} addToCart={addToCart} />
+          ))}
+        </div>
+
+        {/* 
+          Componente CartTotal que calcula y muestra el total de la compra
+          Recibe todos los items del carrito para hacer los cálculos
+        */}
+        <div className="mt-3">
+          <CartTotal items={cartItems} />
+        </div>
+      </div>
     </div>
-  )
+  );
 }
