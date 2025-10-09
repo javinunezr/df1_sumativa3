@@ -6,7 +6,7 @@
     "price": 59990,
     "offerPrice": 49990,
     "description": "EA Sports FC 25 (también conocido como FC 25) es un videojuego de fútbol, desarrollado por EA, y publicado por EA Sports...",
-    "image": "img/eafc25.png",
+    "image": "/df1_sumativa3/img/eafc25.png",
     "type": "product"
   },
   {
@@ -16,7 +16,7 @@
     "price": 69990,
     "offerPrice": 54990,
     "description": "God of War Ragnarök es un videojuego de acción y aventura hack and slash en tercera persona desarrollado por Santa Monica Studio...",
-    "image": "img/godofwar.png",
+    "image": "/df1_sumativa3/img/godofwar.png",
     "type": "product"
   },
   {
@@ -26,7 +26,7 @@
     "price": 69990,
     "offerPrice": 59990,
     "description": "Marvel's Spider-Man 2 es un videojuego de acción y aventura de mundo abierto desarrollado por Insomniac Games...",
-    "image": "img/spiderman2.png",
+    "image": "/df1_sumativa3/img/spiderman2.png",
     "type": "product"
   },
   {
@@ -36,7 +36,7 @@
     "price": 49990,
     "offerPrice": 39990,
     "description": "Resident Evil 2 es un videojuego de terror y supervivencia desarrollado y publicado por Capcom...",
-    "image": "img/residentevil2.png",
+    "image": "/df1_sumativa3/img/residentevil2.png",
     "type": "product"
   },
   {
@@ -44,32 +44,35 @@
     "name": "Gears of War: Reloaded",
     "category": "Shooter",
     "price": 59990,
+    "offerPrice": 49990,
     "description": "Por primera vez en PS5, este icónico shooter en tercera persona llega con resolución 4K, hasta 120 fps y juego cruzado.",
-    "image": "img/gearsofwar.png",
-    "releaseDate": "2025-10-26",
+    "image": "/df1_sumativa3/img/gearsofwar.png",
+    "releaseDate": "2025-08-26",
     "type": "launch",
-    "screenshots": ["img/gearsofwar.png", "img/gearsofwar1.png", "img/gearsofwar2.png", "img/gearsofwar3.png"]
+    "screenshots": ["/df1_sumativa3/img/gearsofwar.png", "/df1_sumativa3/img/gearsofwar1.png", "/df1_sumativa3/img/gearsofwar2.png", "/df1_sumativa3/img/gearsofwar3.png"]
   },
   {
     "id": 6,
     "name": "Metal Gear Solid: Snake Eater",
     "category": "Acción y Aventura",
     "price": 69990,
+    "offerPrice": 59990,
     "description": "El esperado remake con Unreal Engine promete una experiencia visual renovada y fiel al clásico.",
-    "image": "img/metalgear.png",
-    "releaseDate": "2025-10-28",
+    "image": "/df1_sumativa3/img/metalgear.png",
+    "releaseDate": "2025-08-28",
     "type": "launch",
-    "screenshots": ["img/metalgear.png", "img/mg1.png", "img/mg2.png", "img/mg3.png"]
+    "screenshots": ["/df1_sumativa3/img/metalgear.png", "/df1_sumativa3/img/mg1.png", "/df1_sumativa3/img/mg2.png", "/df1_sumativa3/img/mg3.png"]
   },
   {
     "id": 7,
     "name": "Senua's Saga: Hellblade II",
     "category": "Acción y Aventura",
     "price": 59990,
+    "offerPrice": 49990,
     "description": "La secuela del aclamado Hellblade regresa con una narrativa intensa y visuales impactantes.",
-    "image": "img/senuassaga.png",
-    "releaseDate": "2025-10-12",
+    "image": "/df1_sumativa3/img/senuassaga.png",
+    "releaseDate": "2025-08-12",
     "type": "launch",
-    "screenshots": ["img/senuassaga.png", "img/senuassaga1.png", "img/senuassaga2.png", "img/senuassaga3.png"]
+    "screenshots": ["/df1_sumativa3/img/senuassaga.png", "/df1_sumativa3/img/senuassaga1.png", "/df1_sumativa3/img/senuassaga2.png", "/df1_sumativa3/img/senuassaga3.png"]
   }
 ]

@@ -60,7 +60,7 @@ export default function VideoGameCard({ game, onAdd, showAddToCart = true }) {
                         - height fijo de 250px para uniformidad
                     */}
                     <img 
-                        src={game.image} 
+                        src={`${import.meta.env.BASE_URL}${game.image}`} 
                         className="card-img-top" 
                         alt={game.name}
                         style={{ 

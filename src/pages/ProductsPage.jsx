@@ -59,7 +59,8 @@ export default function ProductsPage({ onAddToCart }) {
      */
     useEffect(() => {
         // fetch es una API nativa de JavaScript para hacer peticiones HTTP
-        fetch('/videogames.json')
+        // Usa import.meta.env.BASE_URL para obtener el base path configurado en Vite
+        fetch(`${import.meta.env.BASE_URL}videogames.json`)
             .then(res => {
                 // Verifica si la respuesta HTTP fue exitosa (status 200-299)
                 if (!res.ok) {

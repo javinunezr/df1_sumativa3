@@ -66,7 +66,7 @@ export default function ShoppingCart({ cartItems, removeFromCart }) {
                   {/* Columna de la imagen (25% del ancho) */}
                   <div className="col-3">
                     <img 
-                      src={item.image} 
+                      src={`${import.meta.env.BASE_URL}${item.image}`} 
                       // img-fluid: imagen responsiva, rounded: bordes redondeados
                       className="img-fluid rounded" 
                       alt={item.name}

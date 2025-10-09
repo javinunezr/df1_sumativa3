@@ -7,7 +7,7 @@ export default function LaunchesPage({ onAddToCart }) {
 
     // Cargar lanzamientos desde JSON
     useEffect(() => {
-        fetch('/videogames.json')
+        fetch(`${import.meta.env.BASE_URL}videogames.json`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error(`HTTP error! status: ${res.status}`);

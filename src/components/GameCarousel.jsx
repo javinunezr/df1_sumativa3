@@ -23,7 +23,7 @@ export default function GameCarousel({ game, carouselId, onAddToCart }) {
                             <div className="card h-100 shadow-sm">
                                 <div className="position-relative">
                                     <img 
-                                        src={screenshot} 
+                                        src={`${import.meta.env.BASE_URL}${screenshot}`} 
                                         className="card-img-top" 
                                         alt={`${game.name} screenshot ${index + 1}`}
                                         style={{ 
